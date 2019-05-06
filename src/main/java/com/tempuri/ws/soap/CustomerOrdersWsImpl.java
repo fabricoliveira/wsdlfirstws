@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.cxf.feature.Features;
+
 import com.tempuri.CreateOrdersRequest;
 import com.tempuri.CreateOrdersResponse;
 import com.tempuri.CustomerOrdersPortType;
@@ -14,6 +16,7 @@ import com.tempuri.GetOrdersResponse;
 import com.tempuri.Order;
 import com.tempuri.Product;
 
+@Features(features = "org.apache.cxf.feature.LoggingFeature")
 public class CustomerOrdersWsImpl implements CustomerOrdersPortType {
 
 	Map<BigInteger, List<Order>> customerOrders = new HashMap<>();
