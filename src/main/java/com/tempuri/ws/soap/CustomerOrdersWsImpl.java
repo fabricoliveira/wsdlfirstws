@@ -34,6 +34,8 @@ public class CustomerOrdersWsImpl implements CustomerOrdersPortType {
 		product.setQuantity(BigInteger.valueOf(3));
 		order.getProduct().add(product);
 		
+		orders.add(order);
+		
 		customerOrders.put(BigInteger.valueOf(++currentId), orders);
 	}
 	
@@ -50,7 +52,16 @@ public class CustomerOrdersWsImpl implements CustomerOrdersPortType {
 
 	@Override
 	public CreateOrdersResponse createOrders(CreateOrdersRequest request) {
-		return null;
+		BigInteger customerId = request.getCustomerId();
+		Order order = request.getOrder();
+		
+		List<Order> orders = customerOrders.get(customerId);
+		orders.add(order);
+		
+		CreateOrdersResponse response = new CreateOrdersResponse();
+		response.setResult(true);
+		
+		return response;
 	}
 
 }
